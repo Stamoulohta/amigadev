@@ -1,0 +1,10 @@
+{
+  "name": "Amiga Dev Container",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "dev",
+  "workspaceFolder": "/workspace",
+  "extensions": [
+    "ms-vscode.cpptools",
+    "tomsaunders.vscode-amiga-68k"
+  ]
+}
