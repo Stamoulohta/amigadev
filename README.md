@@ -18,7 +18,7 @@ You can include this devcontainer inside your Amiga project repo as a submodule:
   ```
 - Build the container
   ```
-  cd dev
+  cd .dev
   make build
   ```
 - Compile inside the container

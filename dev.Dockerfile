@@ -21,8 +21,6 @@ RUN addgroup -g ${GID} ${USERNAME} && \
     adduser -D -u ${UID} -G ${USERNAME} -s /bin/bash ${USERNAME} && \
     chown ${USERNAME}:${USERNAME} /workspace
 
-COPY hello.c .
-
 USER ${USERNAME}
 
 CMD ["/usr/bin/env", "bash"]
