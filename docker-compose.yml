@@ -6,9 +6,9 @@ services:
             context: .
             dockerfile: dev.Dockerfile
             args:
-                UID: ${UID:-0}
-                GID: ${GID:-0}
-                USERNAME: ${USER:-root}
+                UID: ${UID:-1000}
+                GID: ${GID:-1000}
+                USERNAME: ${USER:-developer}
         volumes:
             - ..:/workspace
         healthcheck:

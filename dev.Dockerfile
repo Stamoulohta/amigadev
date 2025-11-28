@@ -2,9 +2,9 @@
 
 FROM alpine:latest
 
-ARG UID=0
-ARG GID=0
-ARG USERNAME=root
+ARG UID=1000
+ARG GID=1000
+ARG USERNAME=developer
 
 ENV PATH="/opt/vbcc/bin:${PATH}"
 ENV VBCC=/opt/vbcc
