@@ -10,11 +10,9 @@ services:
                 GID: ${GID:-0}
                 USERNAME: ${USER:-root}
         volumes:
-            - workspace:/workspace
+            - ..:/workspace
         healthcheck:
             test: ["CMD-SHELL", "ls"]
             interval: 60s
             timeout: 5s
             retries: 3
-volumes:
-    workspace:.
