@@ -1,0 +1,5 @@
+#! /usr/bin/env sh
+
+vasmm68k_mot -Fhunkexe -o /dev/null raster.s
+
+vc +aos68k -o /dev/null hello.c

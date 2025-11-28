@@ -1,0 +1,61 @@
+# ======================
+# Local env files
+# ======================
+.env
+
+# ======================
+# Amiga compiled files
+# ======================
+*.o        # object files
+*.a        # static libraries
+*.so       # shared libraries
+*.elf      # executables (if generated)
+*.prg      # Amiga binary programs
+*.exe      # generic executables
+*.amiga    # custom Amiga output
+*.map      # linker map files
+
+# ======================
+# Build directories
+# ======================
+build/
+bin/
+obj/
+out/
+
+# ======================
+# Temporary files
+# ======================
+*~
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+
+# ======================
+# Editor / IDE configs
+# ======================
+.vscode/
+.idea/
+*.code-workspace
+
+# ======================
+# Docker / Devcontainer
+# ======================
+.docker/
+docker-compose.override.yml
+*.log
+
+# ======================
+# Git submodules
+# ======================
+# Include the submodule itself, ignore internal files if needed
+.dev/.git
+
+# ======================
+# Misc
+# ======================
+tags
+*.stackdump
+

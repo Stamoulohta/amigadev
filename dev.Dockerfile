@@ -23,4 +23,4 @@ RUN addgroup -g ${GID} ${USERNAME} && \
 
 USER ${USERNAME}
 
-CMD ["/usr/bin/env", "bash"]
+CMD ["sleep", "infinity"]
