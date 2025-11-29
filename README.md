@@ -16,13 +16,22 @@ You can include this devcontainer inside your Amiga project repo as a submodule:
   git submodule add https://github.com/Stamoulohta/amigadev.git .dev
   git submodule update --init --recursive
   ```
-- Build the container
+- Optionally include entries to your env
+  ```
+    DEV_UID=1000
+    DEV_GID=1000
+    DEV_NAME=developer
+    WORKSPACE=./src
+  ```
+- Build and start the container
   ```
   cd .dev
   make build
+  make up
   ```
 - Compile inside the container
   ```
+  make dev
   vc +aos68k src.c -o out
   ```
 

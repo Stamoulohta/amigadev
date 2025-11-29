@@ -1,18 +1,18 @@
 services:
     dev:
+        env_file:
+          - path: ../.env
+            required: false
+          - path: ./.env
+            required: false
         container_name: dev
         hostname: dev
         build:
             context: .
-            dockerfile: dev.Dockerfile
+            dockerfile: Dockerfile
             args:
-                UID: ${UID:-1000}
-                GID: ${GID:-1000}
-                USERNAME: ${USER:-developer}
+                UID: ${DEV_UID:-${UID:-1000}}
+                GID: ${DEV_GID:-${GID:-1000}}
+                USERNAME: ${DEV_NAME:-${USERNAME:-developer}}
         volumes:
-            - ..:/workspace
-        healthcheck:
-            test: ["CMD-SHELL", "ls"]
-            interval: 60s
-            timeout: 5s
-            retries: 3
+          - ${WORKSPACE:-..}:/workspace

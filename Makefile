@@ -1,4 +1,3 @@
-
 .PHONY: pull buld up down stop dev
 
 pull:
