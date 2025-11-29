@@ -1,5 +1,3 @@
-
-
 FROM alpine:latest
 
 ARG UID=1000
@@ -14,6 +12,12 @@ ENV NDKL=$NDK/Include/linker_libs
 
 RUN apk add --no-cache --upgrade bash wget 7zip
 
+RUN addgroup -g ${GID} ${USERNAME} && \
+    adduser -D -u ${UID} -G ${USERNAME} -s /bin/bash ${USERNAME} && \
+    install --directory --owner ${USERNAME} --group ${USERNAME} /workspace
+
+USER ${USERNAME}
+
 WORKDIR /opt
 
 RUN wget http://www.ibaug.de/vbcc/vbcc_linux_x64.tar.gz && \
@@ -25,16 +29,10 @@ RUN wget https://os.amigaworld.de/download.php?id=3 -O NDK39.lha && \
     7zz x -o/opt NDK39.lha NDK_3.9/Include/* && \
     rm -f NDK39.lha
 
-RUN find /opt -type d -exec chmod 755 {} \+ && \
-    find /opt -type f ! -path "**/bin/*" -exec chmod 644 {} \+ && \
-    find /opt/vbcc/bin -type f -exec chmod 755 {} \+
+#RUN find /opt -type d -exec chmod 755 {} \+ && \
+#    find /opt -type f ! -path "**/bin/*" -exec chmod 644 {} \+ && \
+#    find /opt/vbcc/bin -type f -exec chmod 755 {} \+
 
 WORKDIR /workspace
-
-RUN addgroup -g ${GID} ${USERNAME} && \
-    adduser -D -u ${UID} -G ${USERNAME} -s /bin/bash ${USERNAME} && \
-    chown ${USERNAME}:${USERNAME} /workspace
-
-USER ${USERNAME}
 
 CMD ["sleep", "infinity"]
