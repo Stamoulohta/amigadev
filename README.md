@@ -18,9 +18,10 @@ You can include this devcontainer inside your Amiga project repo as a submodule:
   ```
 - Optionally include entries to your env
   ```
-    DEV_UID=1000
-    DEV_GID=1000
-    DEV_NAME=developer
+    DEVUID=1000
+    DEVGID=1000
+    DEVNAME=developer
+
     WORKSPACE=./src
   ```
 - Build and start the container

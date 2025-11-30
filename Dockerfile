@@ -2,9 +2,9 @@
 
 FROM alpine:latest
 
-ARG UID=1000
-ARG GID=1000
-ARG USERNAME=developer
+ARG DEVUID=1000
+ARG DEVGID=1000
+ARG DEVNAME=developer
 
 ENV PATH="/opt/vbcc/bin:${PATH}"
 ENV VBCC=/opt/vbcc
@@ -31,10 +31,10 @@ RUN find /opt -type d -exec chmod 755 {} \+ && \
 
 WORKDIR /workspace
 
-RUN addgroup -g ${GID} ${USERNAME} && \
-    adduser -D -u ${UID} -G ${USERNAME} -s /bin/bash ${USERNAME} && \
-    chown ${USERNAME}:${USERNAME} /workspace
+RUN addgroup -g ${DEVGID} ${DEVNAME} && \
+    adduser -D -u ${DEVUID} -G ${DEVNAME} -s /bin/bash ${DEVNAME} && \
+    chown ${DEVNAME}:${DEVNAME} /workspace
 
-USER ${USERNAME}
+USER ${DEVNAME}
 
 CMD ["sleep", "infinity"]

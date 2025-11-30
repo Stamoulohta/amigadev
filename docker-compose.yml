@@ -11,8 +11,8 @@ services:
             context: .
             dockerfile: Dockerfile
             args:
-                UID: ${DEV_UID:-${UID:-1000}}
-                GID: ${DEV_GID:-${GID:-1000}}
-                USERNAME: ${DEV_NAME:-${USERNAME:-developer}}
+                DEVUID: ${DEVUID:-${UID:-1000}}
+                DEVGID: ${DEVGID:-${GID:-1000}}
+                DEVNAME: ${DEVNAME:-${USERNAME:-developer}}
         volumes:
           - ${WORKSPACE:-..}:/workspace
