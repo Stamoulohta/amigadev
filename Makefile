@@ -18,3 +18,6 @@ stop:
 
 dev:
 	docker compose exec --interactive --tty dev /usr/bin/env bash
+
+uae:
+	docker compose exec --interactive --tty uae /usr/bin/env bash

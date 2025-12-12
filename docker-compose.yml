@@ -9,10 +9,29 @@ services:
         hostname: dev
         build:
             context: .
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.dev
             args:
                 DEVUID: ${DEVUID:-${UID:-1000}}
                 DEVGID: ${DEVGID:-${GID:-1000}}
                 DEVNAME: ${DEVNAME:-${USERNAME:-developer}}
         volumes:
           - ${WORKSPACE:-..}:/workspace
+
+    uae:
+      build:
+          context: .
+          dockerfile: Dockerfile.uae
+      container_name: uae
+      hostname: uae
+      depends_on:
+          - dev
+      working_dir: /workspace
+      volumes:
+          - ${WORKSPACE:-..}:/workspace
+          - /tmp/.X11-unix:/tmp/.X11-unix:rw
+          - /run/user/${UID:-1000}/pulse:/run/user/${DEVUID:-${UID:-1000}}/pulse:ro
+      environment:
+         - DISPLAY=${DISPLAY:-:0.0}
+         - XDG_RUNTIME_DIR=/tmp/runtime-root
+         - LIBGL_ALWAYS_SOFTWARE=1  # no GPU
+         - PULSE_SERVER=unix:/run/user/${DEVUID:-${UID:-1000}}/pulse/native
