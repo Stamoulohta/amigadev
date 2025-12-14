@@ -1,0 +1,25 @@
+# FS-UAE Configuration for Amiga 500 (for running on Mac, not in container)
+# Boots to CLI prompt, workspace mounted as DH0:
+
+[config]
+amiga_model = A1200
+kickstart_file = /Users/jm/Projects/amigadev/roms/kick31-a1200.rom
+
+# Memory
+chip_memory = 2048
+fast_memory = 8192
+
+# Boot from Workbench 3.1 floppy
+floppy_drive_0 = /Users/jm/Projects/amigadev/disks/wb31.adf
+
+# Hard drive 0 - Your workspace (DH0:)
+hard_drive_0 = /Users/jm/Projects
+hard_drive_0_label = Workspace
+
+# Display
+fullscreen = 0
+window_width = 960
+window_height = 540
+
+# Performance
+accuracy = 1

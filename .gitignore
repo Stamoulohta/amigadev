@@ -14,6 +14,13 @@
 *.exe      # generic executables
 *.amiga    # custom Amiga output
 *.map      # linker map files
+test/hello # compiled test binaries
+
+# ======================
+# Amiga ROM and disk images
+# ======================
+roms/      # Kickstart ROMs (user must provide)
+disks/     # Workbench and system disks (user must provide)
 
 # ======================
 # Build directories

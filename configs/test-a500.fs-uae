@@ -1,0 +1,25 @@
+# FS-UAE Configuration for Amiga 500 (OCS, 1MB Chip RAM)
+# Boots to CLI prompt, /workspace mounted as DH0:
+
+[config]
+amiga_model = A500
+kickstart_file = /roms/kick13.rom
+
+# Memory
+chip_memory = 512
+slow_memory = 512
+
+# No floppy - boot to CLI
+floppy_drive_0 =
+
+# Hard drive - maps /workspace to DH0:
+hard_drive_0 = /workspace
+hard_drive_0_label = Workspace
+
+# Display
+fullscreen = 0
+window_width = 960
+window_height = 540
+
+# Performance
+accuracy = 1
