@@ -1,10 +1,5 @@
 services:
     dev:
-        env_file:
-          - path: ../.env
-            required: false
-          - path: ./.env
-            required: false
         container_name: dev
         hostname: dev
         build:
@@ -28,6 +23,8 @@ services:
       working_dir: /workspace
       volumes:
           - ${WORKSPACE:-..}:/workspace
+          - ./roms:/roms:ro
+          - ./configs:/configs:ro
           - /tmp/.X11-unix:/tmp/.X11-unix:rw
           - /run/user/${UID:-1000}/pulse:/run/user/${DEVUID:-${UID:-1000}}/pulse:ro
       environment:

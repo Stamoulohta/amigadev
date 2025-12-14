@@ -1,4 +1,4 @@
-.PHONY: pull buld up down stop dev
+.PHONY: pull buld up down stop dev uae test-amiga
 
 pull:
 	docker compose pull
@@ -21,3 +21,6 @@ dev:
 
 uae:
 	docker compose exec --interactive --tty uae /usr/bin/env bash
+
+test-amiga:
+	docker compose exec uae fs-uae /configs/test-a500.fs-uae

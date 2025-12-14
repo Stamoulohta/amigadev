@@ -6,13 +6,15 @@ ARG DEVUID=1000
 ARG DEVGID=1000
 ARG DEVNAME=developer
 
-ENV PATH="/opt/vbcc/bin:${PATH}"
+ENV PATH="/opt/vbcc/bin:/opt/evo/Bin:${PATH}"
 ENV VBCC=/opt/vbcc
 ENV NDK=/opt/ndk39/NDK_3.9
 ENV NDKI=$NDK/Include/include_h
 ENV NDKL=$NDK/Include/linker_libs
+ENV EVO=/opt/evo
+ENV EMODULES=$EVO/Modules
 
-RUN apk add --no-cache --upgrade bash wget 7zip
+RUN apk add --no-cache --upgrade bash wget 7zip python3 py3-pip gcc musl-dev python3-dev
 
 WORKDIR /opt
 
@@ -25,9 +27,20 @@ RUN wget https://os.amigaworld.de/download.php?id=3 -O NDK39.lha && \
     7zz x -o/opt NDK39.lha NDK_3.9/Include/* && \
     rm -f NDK39.lha
 
+RUN wget https://github.com/dmcoles/EVO/releases/download/v3.9.1/evo391.lha -O evo391.lha && \
+    7zz x -o/opt/evo evo391.lha && \
+    rm -f evo391.lha
+
 RUN find /opt -type d -exec chmod 755 {} \+ && \
-    find /opt -type f ! -path "**/bin/*" -exec chmod 644 {} \+ && \
-    find /opt/vbcc/bin -type f -exec chmod 755 {} \+
+    find /opt -type f ! -path "**/bin/*" ! -path "**/Bin/*" -exec chmod 644 {} \+ && \
+    find /opt/vbcc/bin -type f -exec chmod 755 {} \+ && \
+    find /opt/evo/Bin -type f -exec chmod 755 {} \+
+
+RUN pip3 install --break-system-packages amitools machine68k
+
+RUN echo '#!/bin/bash' > /opt/vbcc/bin/evo && \
+    echo 'vamos -m 8192 /opt/evo/Bin/EVO "$@"' >> /opt/vbcc/bin/evo && \
+    chmod 755 /opt/vbcc/bin/evo
 
 WORKDIR /workspace
 

@@ -5,7 +5,7 @@ It includes the **vbcc toolchain**, **vasmm68k assembler**, and **vlink linker**
 
 ## Features
 
-- Preinstalled Amiga 68k toolchain (vbcc, vasmm68k, vlink)
+- Preinstalled Amiga 68k toolchain (vbcc, vasmm68k, vlink, EVO Amiga E compiler)
 - Reproducible environment with Docker + docker-compose
 - Ready for use in VS Code devcontainers
 
@@ -34,6 +34,7 @@ You can include this devcontainer inside your Amiga project repo as a submodule:
   ```
   make dev
   vc +aos68k src.c -o out
+  evo source.e -o out
   ```
 
 ## Licence
